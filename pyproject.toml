@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "supply-chain-resilience-monte-carlo-lab"
+version = "1.0.0"
+description = "Deterministic Monte Carlo laboratory for supply-chain resilience and mitigation analysis"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Emmanuel Beristain Guzman"}]
+dependencies = [
+  "click>=8.1,<9",
+  "matplotlib>=3.8,<4",
+  "numpy>=1.26,<3",
+  "pandas>=2.1,<3",
+]
+
+[project.optional-dependencies]
+dashboard = ["plotly>=5.20,<7"]
+dev = ["pytest>=8,<9", "ruff>=0.6,<1"]
+
+[project.scripts]
+sc-resilience = "supply_chain_resilience.cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
